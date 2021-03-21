@@ -1,4 +1,4 @@
-const { Kafka } = require('kafkajs');
+import { Kafka } from 'kafkajs';
 
 const kafka = new Kafka({
 	clientId: 'Client01',
@@ -23,7 +23,7 @@ let send = async () => {
 		console.log('Sending ' + temperature + 'c temperature');
 
 		await producer.send({
-			topic: 'test-topic',
+			topic: 'temperature-topic',
 			messages: [{ value: temperature.toString() }],
 		});
 

@@ -2,12 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import routes from './routes/index.js';
+import Kafka from './kafkaClient.js';
 
 class App {
 	constructor() {
 		this.server = express();
 		this.middlewares();
 		this.routes();
+		new Kafka();
 	}
 
 	middlewares() {

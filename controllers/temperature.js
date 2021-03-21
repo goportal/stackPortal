@@ -2,9 +2,6 @@ import { Console } from 'node:console';
 import Temperature from '../models/temperature.js';
 
 class TemperatureController {
-	async print(){
-		Console.log("OLAAAAAA");
-	}
 	async getLast(req, res) {
 		try {
 			const temperatures = await Temperature.find({})
@@ -15,6 +12,15 @@ class TemperatureController {
 			res.status(400).send(err.message);
 		}
 	}
+
+	async sendTemperature(temperature){
+		try{
+			Temperature.insert(temperature);
+		}catch(err){
+			console.log(err);
+		}
+	}
+
 }
 
-export default TemperatureController;
+export default new TemperatureController();
