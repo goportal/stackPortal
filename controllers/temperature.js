@@ -1,4 +1,3 @@
-import { Console } from 'node:console';
 import Temperature from '../models/temperature.js';
 
 class TemperatureController {
@@ -13,14 +12,15 @@ class TemperatureController {
 		}
 	}
 
-	async sendTemperature(temperature){
-		try{
-			Temperature.insert(temperature);
-		}catch(err){
-			console.log(err);
-		}
+	async sendTemperature(temperature) {
+		Temperature.create(temperature, (err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				console.log('Temperature added to mongodb');
+			}
+		});
 	}
-
 }
 
 export default new TemperatureController();

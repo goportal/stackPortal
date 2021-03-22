@@ -1,6 +1,7 @@
+import './mongo.js';
 import express from 'express';
 import bodyParser from 'body-parser';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import routes from './routes/index.js';
 import Kafka from './kafkaClient.js';
 
@@ -9,7 +10,7 @@ class App {
 		this.server = express();
 		this.middlewares();
 		this.routes();
-		new Kafka();
+		this.kafka = new Kafka();
 	}
 
 	middlewares() {
@@ -19,7 +20,7 @@ class App {
 			})
 		);
 		this.server.use(bodyParser.json());
-		this.server.use(morgan('combined'));
+		// this.server.use(morgan('combined'));
 	}
 
 	routes() {

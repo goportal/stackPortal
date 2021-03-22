@@ -5,6 +5,6 @@ const schema = new mongoose.Schema({
 	timestamp: String,
 });
 
-const Temperature = mongoose.model('Temperature', schema);
+const Temperature = mongoose.model('Temperatures', schema);
 
 export default Temperature;
